@@ -9,7 +9,7 @@ import torch.nn.functional as F
 
 from einops import rearrange, reduce, repeat
 from einops.layers.torch import Rearrange
-from DiffusionFreeGuidence.Attetnion import crossAttention,crossFrequencyAttention,temporalFrequencyAttention,synTemporalBlock
+from DiffusionFreeGuidence.Attetnion import synTemporalBlock
 from DiffusionFreeGuidence.Attetnion_temp import Adaptive_Spectral_Block_c, Adaptive_Spectral_Block_t
 
 

@@ -9,7 +9,7 @@ from tqdm.auto import tqdm
 from torch.cuda.amp import autocast
 from random import random
 from torch.optim.lr_scheduler import _LRScheduler
-from DiffusionFreeGuidence.Unet1D_temp import UNet1D
+from DiffusionFreeGuidence.Unet1D import UNet1D
 
 ModelPrediction =  namedtuple('ModelPrediction', ['pred_noise', 'pred_x_start'])
 
@@ -370,36 +370,3 @@ class GaussianDiffusion1D_cls_free(nn.Module):
         img = normalize_to_neg_one_to_one(img)
         return self.p_losses(img, t, *args, **kwargs)
 
-# example
-
-if __name__ == '__main__':
-    num_classes = 125
-
-    model = UNet1D(
-        dim = 64,
-        dim_mults = (1, 2, 4, 8),
-        # num_classes = num_classes,
-        cond_drop_prob = 0.5
-    )
-
-    diffusion = GaussianDiffusion1D_cls_free(
-        model,
-        seq_length = 128,
-        timesteps = 1000,
-        sampling_timesteps=50
-    ).cuda()
-
-    training_signals = torch.randn(8, 3, 128).cuda() # images are normalized from 0 to 1
-    signal_classes = torch.randint(0, num_classes, (8,1)).cuda()    # say 10 classes
-
-    loss = diffusion(training_signals, classes = signal_classes)
-    loss.backward()
-
-    # do above for many steps
-
-    sampled_signals = diffusion.sample(
-        classes = signal_classes,
-        cond_scale = 3.                # condition scaling, anything greater than 1 strengthens the classifier free guidance. reportedly 3-8 is good empirically
-    )
-
-    print(sampled_signals.shape) # (8, 3, 128)

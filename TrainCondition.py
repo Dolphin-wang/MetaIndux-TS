@@ -5,11 +5,6 @@ import torch.optim as optim
 from tqdm import tqdm
 from torch.utils.data import DataLoader,TensorDataset,random_split
 import numpy as np
-from DiffusionFreeGuidence.Unet1D_fre_c import UNet1D_fre_c
-from DiffusionFreeGuidence.Unet1D_fre_t import UNet1D_fre_t
-from DiffusionFreeGuidence.Unet1D_fre_syn import UNet1D_fre_syn
-from DiffusionFreeGuidence.Unet1D_fre_syn_ori import UNet1D_fre_syn_ori
-from DiffusionFreeGuidence.Unet1D_fre_woct import UNet1D_fre_woct
 from DiffusionFreeGuidence.Unet1D import UNet1D
 from DiffusionFreeGuidence.Unet1D_fre import UNet1D_fre
 from DiffusionFreeGuidence.Diffwave import DiffWave

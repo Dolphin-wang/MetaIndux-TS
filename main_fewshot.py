@@ -7,7 +7,6 @@ from data.CMAPSSDataset import CMAPSSDataset
 import wandb
 from utils import wandb_record,torch_seed
 from eva_regressor import predictive_score_metrics
-from eva_classifier import discrimative_score_metrics
 from data_process import load_train_data,load_test_data,load_test_data_rul,load_train_data_rul
 from measure_score.Utils.discriminative_metric import discriminative_score_metrics
 from measure_score.Utils.context_fid import Context_FID
@@ -101,20 +100,8 @@ if __name__ == '__main__':
         random_indices = np.random.choice(train_data.shape[0], size=len(train_data) // 10 , replace=False)
 
         for i in range(train_loop):
-            #rmse,mae, score= predictive_score_metrics(args, original_data_test, syn_dataset) #syn_dataset)
             rmse,mae, score= predictive_score_metrics(args, filtered_data_test, syn_dataset) #syn_dataset)
-            #discriminative_score, fake_accuracy, real_accuracy = discriminative_score_metrics(train_data.cpu().numpy() , syn_data)
-            # discriminative_score,Context_FID_score = 0,0
-            '''Context_FID_score = Context_FID(train_data.cpu().numpy(), syn_data) # Context_FID分数计算
-            print("Context_FID_score:", Context_FID_score)
-
-            loss_function = CrossCorrelLoss(train_data.cpu().numpy(), name=args.dataset) # Correlation分数计算
-            CrossCorrel_Loss = loss_function(torch.tensor(syn_data))
-            print("损失值:", CrossCorrel_Loss.item())
-            # rmse,score,discriminative_score, mae,  Context_FID_score = 0,0,0,0,0'''
             rmse_list.append(rmse)
-            #rmse_list.append(rmse); score_list.append(score); acc_list.append(discriminative_score)
-            #mae_list.append(mae); FID_list.append(Context_FID_score); CorrelLoss_list.append(CrossCorrel_Loss)
         with open('output_task.txt', 'a') as f:
             f.write("\n\n--- New Data Entry ---\n")
             f.write(f"Model_name: {args.model_name}\n")
@@ -125,7 +112,4 @@ if __name__ == '__main__':
             for value in rmse_list:
                 f.write(f"{value}\n")
 
-        #print("loss_list",rmse_list,"acc list",acc_list)
-        #wandb_record(rmse_list,mae_list,score_list, acc_list,FID_list,CorrelLoss_list)
-        #wandb.finish()
 
