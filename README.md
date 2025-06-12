@@ -145,7 +145,7 @@ If you find this code helpful, please cite our paper:
 ```
 @article{wang2025meta,
   title={MetaIndux-TS: Frequency-Aware AIGC Foundation Model for Industrial Time Series},
-  author={Ren, Lei and Wang, Haiteng and Li, Yikang},
+  author={Wang, Haiteng and Ren, Lei  and Li, Yikang},
   journal={IEEE Transactions on Neural Networks and Learning Systems},
   year={2025},
   publisher={IEEE}
