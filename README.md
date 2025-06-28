@@ -2,7 +2,7 @@
 
 Source codes for the paper "MetaIndux-TS: Frequency-Aware AIGC Foundation Model for Industrial Time Series"[IEEE Transactions on Neural Networks and Learning Systems] by Haiteng Wang, Lei Ren, Yikang Li.
 
-Diff-MTS is a novel diffusion-based AIGC model tailored for industrial multivariate time series (MTS). It leverages temporal augmentation and adaptive diffusion techniques to generate high-quality synthetic data, addressing challenges in industrial data generation, including data scarcity, unstable training in GANs, and complex temporal dependencies.
+MetaIndux-TS is a frequency-informed AIGC foundation model based on diffusion model frameworks. This model is designed to generate industrial time-series data under a variety of working conditions, across different types of equipment, and with variable lengths. Specifically, MetaIndux-TS integrates dual-frequency cross-attention networks, transforming time series into the frequency domain to model multivariate dependencies and capture intricate temporal details. In addition, MetaIndux-TS exhibits zero-shot generation capabilities for samples under unseen conditions, offering the potential to address data collection challenges in extreme environments.
 
 ![Example Image](submits/framework.png)
 
